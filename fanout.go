@@ -8,9 +8,9 @@ type Fan struct {
 	mu      sync.Mutex
 }
 
-// Recv the value with a buffer. If the write function returns an error,
+// Receive the value with a buffer. If the write function returns an error,
 // the receive loop will stop, and the error will be returned to the caller.
-func (v *Fan) Recv(buf int, write func(v interface{}) error) error {
+func (v *Fan) Receive(buf int, write func(v interface{}) error) error {
 	ch := make(chan interface{}, buf)
 	v.mu.Lock()
 	v.clients = append(v.clients, ch)
